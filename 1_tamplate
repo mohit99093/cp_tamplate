@@ -1,0 +1,88 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long int
+#define pb push_back
+#define llu unsigned long long int
+#define all(v) v.begin(),v.end()
+#define sd size()
+#define pi pair<ll,ll>
+#define lb(a,b) lower_bound(all(a),b) - a.begin()
+#define ub(a,b) upper_bound(all(a),b) - a.begin()
+#define sp( a, b)   cout<<setprecision(b)<<a<<" ";
+#define mod 1000000007
+#define d2 vector<vector<ll>>
+#define d1 vector<ll>
+#define d1pi vector<pi>
+#define d1b vector<bool>
+// graph
+const ll N = 2e5+100;
+d1 g[N];
+vector<bool> vis(N,0);
+void un_add_edge(ll a,ll b)
+{
+        g[a].pb(b);
+        g[b].pb(a);
+}
+void add_edge(ll a,ll b)
+{
+        g[a].pb(b);
+      
+}
+ 
+// dsu start
+d1 par(N,1);
+d1 si(N,1);
+void init(ll n)
+{
+        for(ll i=1;i<=n;i++)
+        par[i]=i;
+}
+ll root(ll i)
+{
+       if(par[i]==i)
+       return i;
+       
+       return par[i]= root(par[i]);
+}
+void uni(ll a,ll b)
+{
+           ll aa = root(a);
+           ll bb = root(b);
+           if(aa==bb)return;
+           if(si[aa]>si[bb])
+           {
+                par[bb] = par[aa];
+                si[aa]+=si[bb];
+                si[bb]=0;
+           }
+           else
+           {
+                par[aa]=par[bb];
+                si[bb]+=si[aa];
+                si[aa]=0;
+           }
+}
+// dsu end
+
+ll binpow(ll a,ll b) {
+    ll  res = 1;
+    while (b > 0) {
+        if (b & 1)
+            res = res * a,res=res%mod;
+        a = a * a;
+        a = a%mod;
+        b >>= 1;
+    }
+    return res;
+}
+
+void solve() {
+    
+}
+int main()
+{   
+         llu t=1;
+       //  cin>>t;
+         while(t--)
+            solve();	
+}
